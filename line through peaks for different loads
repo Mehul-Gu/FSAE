@@ -1,0 +1,70 @@
+x = unique(load);
+count = 1;
+count5 = 1;
+count3 = 1;
+count4 = 1;
+count2 = 1;
+load1 = x(1);
+load5 = x(5);
+load3 = x(3);
+load4 = x(4);
+load2 = x(2);
+for i=1:115060
+    if load(i) == load1
+        SAload1(count) = SA(i);
+        FYload1(count) = FY(i);
+        count = count+1;
+    end
+    if load(i) == load5
+        SAload5(count5) = SA(i);
+        FYload5(count5) = FY(i);
+        count5 = count5+1;
+    end
+    if load(i) == load3
+        SAload3(count3) = SA(i);
+        FYload3(count3) = FY(i);
+        count3 = count3+1;
+    end
+    if load(i) == load4
+        SAload4(count4) = SA(i);
+        FYload4(count4) = FY(i);
+        count4 = count4+1;
+    end
+    if load(i) == load2
+        SAload2(count2) = SA(i);
+        FYload2(count2) = FY(i);
+        count2 = count2+1;
+    end
+end
+
+maxFYload1 = max(FYload1)
+maxFYload5 = max(FYload5)
+sortedFYload5 = sort(FYload5, 'descend');
+maxFYload5 = sortedFYload5(25);
+maxFYload3 = max(FYload3)
+maxFYload4 = max(FYload4)
+maxFYload2 = max(FYload2)
+sortedFYload2 = sort(FYload2, 'descend');
+maxFYload2 = sortedFYload2(2);
+
+positionload1 = find(FYload1==maxFYload1)
+SAformaxFYload1 = SAload1(positionload1)
+positionload5 = find(FYload5==maxFYload5)
+SAformaxFYload5 = SAload5(positionload5)
+positionload3 = find(FYload3==maxFYload3)
+SAformaxFYload3 = SAload3(positionload3)
+positionload4 = find(FYload4==maxFYload4)
+SAformaxFYload4 = SAload4(positionload4)
+positionload2 = find(FYload2==maxFYload2)
+SAformaxFYload2 = SAload2(positionload2)
+
+linematrixSA = [SAformaxFYload1 SAformaxFYload2 SAformaxFYload3 SAformaxFYload4 SAformaxFYload5]
+linematrixFY = [maxFYload1 maxFYload2 maxFYload3 maxFYload4 maxFYload5]
+
+plot(SAload1, FYload1)
+hold on
+plot(SAload5, FYload5)
+plot(SAload3, FYload3)
+plot(SAload4, FYload4)
+plot(SAload2, FYload2)
+plot(linematrixSA, linematrixFY, 'Color', [0 0 0])
