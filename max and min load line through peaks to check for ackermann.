@@ -1,0 +1,31 @@
+x = unique(load);
+count = 1;
+count5 = 1;
+load1 = x(1);
+load5 = x(5);
+for i=1:115060
+    if load(i) == load1
+        SAload1(count) = SA(i);
+        FYload1(count) = FY(i);
+        count = count+1;
+    end
+    if load(i) == load5
+        SAload5(count5) = SA(i);
+        FYload5(count5) = FY(i);
+        count5 = count5+1;
+    end
+end
+
+maxFYload1 = max(FYload1)
+maxFYload5 = max(FYload5)
+sortedFYload5 = sort(FYload5, 'descend');
+maxFYload5 = sortedFYload5(25);
+positionload1 = find(FYload1==maxFYload1)
+SAformaxFYload1 = SAload1(positionload1)
+positionload5 = find(FYload5==maxFYload5)
+SAformaxFYload5 = SAload5(positionload5)
+
+plot(SAload1, FYload1)
+hold on
+plot(SAload5, FYload5)
+plot([SAformaxFYload1 SAformaxFYload5], [maxFYload1 maxFYload5])
