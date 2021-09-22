@@ -1,0 +1,16 @@
+%% DATA FILTERING
+% filter out unwanted pressure and velocities
+req_SA = [];
+req_FZ = [];
+req_FY = [];
+req_IA = [];
+unique_vels = [40.2335, 24.1401, 72.4203];
+unique_press = [82.73712, 68.9476, 96.5266, 55.1581];
+for i = 1:length(FZ)
+    if any(1==find(unique_vels==velocity(1,i))) && any(1==find(unique_press==pressure(1,i)))
+        req_SA(end+1) = SA(1, i);
+        req_FZ(end+1) = FZ(1, i);
+        req_FY(end+1) = FY(1, i);
+        req_IA(end+1) = IA(1, i);
+    end
+end
