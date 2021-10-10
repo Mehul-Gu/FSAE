@@ -1,0 +1,8 @@
+for i=1:a
+    SplineFY(i) = FYload1(600+i)
+    for r=1:i
+        if SplineFY(r) ~= FYload1(600+i)
+            RealSplineFY(i) = FYload1(600+i)
+        end
+    end
+end
